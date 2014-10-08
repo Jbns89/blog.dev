@@ -23,19 +23,20 @@ textarea{
 </style>
 
 
-<title>Create a Blog</title>
+<title>Edit Blog</title>
 @stop
 
 
 @section('content')
+
                 
-    {{Form::open(array('action' => 'PostController@store'))}}
+    <!-- When creating a new object use Form::open when editing one use Form::model-->
+    
+    {{Form::model($post, array('action' => ['PostController@update', $post->id], 'method' => 'put'))}}
         @include('posts.form')
-        
-        
-         {{Form::submit('Blog Me')}}
-        
+        {{Form::submit('Save Changes')}}
     {{ Form::close() }}
+
 
 @stop
 

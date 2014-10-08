@@ -2,10 +2,11 @@
 
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="/bootstrap_copy/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/bootstrap_copy/css/bootstrap-theme.min.css">
+    
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="bootstrap_copy/JS/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/bootstrap_copy/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/bootstrap_copy/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="/font_awesome_copy/css/font-awesome.min.css">
     <link rel="stylesheet" href="whhg_font_copy/css/whhg.css">
     <link rel="stylesheet" type="text/css" href="/css/res_style.css">
@@ -20,6 +21,9 @@
         a {
             color: #094170;
             text-decoration: none;
+        }
+        label{
+            font-size: medium;
         }
     </style>
 
@@ -53,10 +57,15 @@
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>
-    
+        <div class="container">
+            <div class="row">
+                <div class="span12">
     <!-- install blade syntax highlighter -->
     @yield('content')
     
+                </div>
+            </div>
+        </div>
     
     <!-- footer -->
     @yield('footer')

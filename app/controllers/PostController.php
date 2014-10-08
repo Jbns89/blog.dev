@@ -10,8 +10,9 @@ class PostController extends \BaseController {
     public function index()
     {
         //
-        $posts = Post::all();
-        $posts = Post::orderBy('id', 'DESC')->get();
+
+        $posts = Post::orderBy('id', 'DESC')->paginate(4);
+
         return View::make('posts.index')->with('posts', $posts);
     }
 
@@ -35,36 +36,8 @@ class PostController extends \BaseController {
      */
     public function store()
     {
-        
-        //When using a static you must use
-        //the $ (dollar sign)
-        $validator = Validator::make(Input::all(), Post::$rules);
-        
-        
-        if ($validator->fails()) {
-            //If validator fails we are going to send them back
-            //with all their input and the errors received
-            //from validator
-            return Redirect::back()->withInput()->withErrors($validator);
-        }
-        else {
-            $post = new Post();
-        
-            //Input::has('something') is good for setting
-            //up checkbox and seeing if it has been 
-            $post->title = Input::get('title');
-            $post->content = Input::get('content');
-            $post->save();
-            
-            $id = $post->id;
-            
-            //You can also use Input::get('title', 'Default Value');
-            //So if nothing is typed in then a default value is set
-            
-            return Redirect::action('PostController@show', $id);
-        }
-        
-        
+        $post = new Post();
+        return $this->savePost($post);
     }
 
 
@@ -93,9 +66,8 @@ class PostController extends \BaseController {
     {
         //
         $post = Post::find($number);
-        $post->title = "Let's get get get it postin'";
-        $post->content = "I like rap puns";
-        $post->save();
+        return View::make('posts.update')->with('post', $post);
+        
         
     }
 
@@ -110,7 +82,42 @@ class PostController extends \BaseController {
     {
         //
         $post = Post::find($number);
-        var_dump($post);
+        return $this->savePost($post);
+
+        
+    }
+    
+    protected function savePost(Post $post)
+    {
+        
+        //When using a static you must use
+        //the $ (dollar sign)
+        $validator = Validator::make(Input::all(), Post::$rules);
+        
+        
+        if ($validator->fails()) {
+            //If validator fails we are going to send them back
+            //with all their input and the errors received
+            //from validator
+            return Redirect::back()->withInput()->withErrors($validator);
+        }
+        else {
+            
+        
+            //Input::has('something') is good for setting
+            //up checkbox and seeing if it has been 
+            $post->title = Input::get('title');
+            $post->content = Input::get('content');
+            $post->save();
+            
+            $id = $post->id;
+            
+            //You can also use Input::get('title', 'Default Value');
+            //So if nothing is typed in then a default value is set
+            
+            return Redirect::action('PostController@show', $id);
+        }
+        
     }
 
 
