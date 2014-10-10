@@ -1,6 +1,17 @@
 <?php
 
 class PostController extends \BaseController {
+    
+    
+    public function __construct()
+    {
+        // call base controller constructor where the csrf token is required
+        parent::__construct();
+
+        // run auth filter before all methods on this controller except index and show
+        $this->beforeFilter('auth.basic', array('except' => array('index', 'show')));
+    }
+    
 
     /**
      * Display a listing of the resource.
@@ -51,6 +62,13 @@ class PostController extends \BaseController {
     {
         //
         $post = Post::find($number);
+        
+        if(!$post) {
+            
+            Log::info('User encountered 404 error', Input::all());
+            //This is showing a 404 error page
+            App::abort(404);
+        }
 
         return View::make('posts.show')->with('post', $post);
     }
@@ -96,9 +114,14 @@ class PostController extends \BaseController {
         
         
         if ($validator->fails()) {
+            
+            //FIGURE OUT HOW TO INCORPORATE THIS WITH 
+            //Session::flash('errorMessage', 'All fields must be filled out');
+            
             //If validator fails we are going to send them back
             //with all their input and the errors received
             //from validator
+            Log::info('User did not fill out all fields of form', Input::all());
             return Redirect::back()->withInput()->withErrors($validator);
         }
         else {
@@ -111,6 +134,8 @@ class PostController extends \BaseController {
             $post->save();
             
             $id = $post->id;
+            
+            Session::flash('successMessage','Post was saved!');
             
             //You can also use Input::get('title', 'Default Value');
             //So if nothing is typed in then a default value is set
@@ -129,9 +154,22 @@ class PostController extends \BaseController {
      */
     public function destroy($number)
     {
-        //
+        //LOOK UP SOFT DELETING
         $post = Post::findOrFail($number);
+        
+        if(!$post) {
+            
+            App::abort(404);
+        }
+        
         $post->delete();
+        
+        Log::info("$post->title has been deleted");
+        
+        Session::flash('successMessage', 'Post deleted!');
+        
+        return Redirect::action('PostController@index');
+        
     }
 
 

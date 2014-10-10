@@ -4,7 +4,7 @@
 @section('header')
 
 <style>
-.blogs{
+.blogs {
     background-color: rgba(255, 255, 255, 0.71);
     width: 75%;
     margin-left: auto;
@@ -25,7 +25,12 @@
         <div class="blogs">
             <h3>{{{ $post->title }}}</h3>
             <p> {{{ $post->content }}} <p>
-            <a href="{{{ action('PostController@edit', $post->id) }}}"><button id="blog-submit" type="submit" class="btn btn-primary input-medium pull-right">Edit</button></a>
+            {{link_to_action('PostController@edit','Edit', array($post->id))}}
+            
+            {{Form::open(['method' => 'Delete', 'action' => ['PostController@destroy', $post->id], 'id' => 'delete-form'])}}
+                <button type="submit" class="btn btn-link">Delete</button>
+            {{Form::close()}}
+            
         </div>
 
 
@@ -34,4 +39,15 @@
 
 @stop
 
+@section('bottom-script')
 
+<script>
+    $("#delete-form").submit(function(e)
+    {
+        if (!confirm('You really wanna delete this??')) {
+            event.preventDefault();
+        }
+    });
+</script>
+
+@stop

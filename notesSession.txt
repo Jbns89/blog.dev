@@ -1,0 +1,56 @@
+Cookies are a way of saving information on a client and are unique to that 
+client. 
+The same is true with sessions. 
+Caching is another method that can be used also. Doing more with less.
+
+
+********SESSIONS*********
+
+// set a value in the session
+//put sends an associative array
+
+Session::put('key', 'value');
+
+
+
+
+// retrieve a value from the session
+$value = Session::get('key');
+
+
+
+
+
+// check if a value exists in the session
+if (Session::has('key')) {
+    // do something here
+}
+
+
+
+// remove a value from the session
+Session::forget('key');
+
+
+
+// clear all session variables
+Session::flush();
+
+
+
+// set flash data
+Session::flash('key', 'value');
+
+
+
+
+// retrieve flash data (same as any other session variable)
+$value = Session::get('key');
+
+
+
+
+
+***************You can also use php artisan tail to find your stack trace of errors***************** 
+
+

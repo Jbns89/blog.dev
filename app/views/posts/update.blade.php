@@ -35,6 +35,7 @@ textarea{
     {{Form::model($post, array('action' => ['PostController@update', $post->id], 'method' => 'put'))}}
         @include('posts.form')
         {{Form::submit('Save Changes')}}
+        
     {{ Form::close() }}
 
 
