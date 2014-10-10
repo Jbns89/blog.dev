@@ -4,7 +4,7 @@
 <head>
     
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script src="bootstrap_copy/JS/bootstrap.min.js"></script>
+    <script src="bootstrap_copy/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="/bootstrap_copy/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/bootstrap_copy/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="/font_awesome_copy/css/font-awesome.min.css">
