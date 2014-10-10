@@ -2,6 +2,21 @@
 
 @section('header')
 
+<style>
+
+.skills{
+    margin-top: 5%;
+    margin-bottom: 2%;
+}
+
+#work{
+    height: 400px;
+}
+
+
+</style>
+
+
 <script>
 $(document).ready(function()
 {
@@ -47,7 +62,7 @@ $(document).ready(function()
         </p>
     </div>
     
-        <div id="work">
+        <div id="work" class="skills">
             <h3>
                 <u>
                     Work Experience
@@ -81,7 +96,7 @@ $(document).ready(function()
             </ul>
             
         </div>
-        <div id="edu">
+        <div id="edu" class="skills">
             <h3>
                 <u>
                     Education
@@ -102,7 +117,7 @@ $(document).ready(function()
                 </li>
             </ul>
         </div>
-        <div id="skillz">
+        <div id="skillz" class="skills">
             <h3>
                 <u>
                     Skills
