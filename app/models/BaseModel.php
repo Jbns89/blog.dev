@@ -24,21 +24,21 @@ class BaseModel extends Eloquent
     }
     
     //These are setters
-    public function setCreatedAtAttribute($value)
-    {
+    // public function setCreatedAtAttribute($value)
+    // {
         
-        $utc = Carbon::createFromFormat($this->getDateFormat(), $value);
+    //     $utc = Carbon::createFromFormat($this->getDateFormat(), $value);
         
-        return $utc->setTimezone('UTC');
-    }
+    //     return $utc->setTimezone('UTC');
+    // }
     
-    public function setUpdatedAtAttribute($value)
-    {
+    // public function setUpdatedAtAttribute($value)
+    // {
         
-        $utc = Carbon::createFromFormat($this->getDateFormat(), $value);
+    //     $utc = Carbon::createFromFormat($this->getDateFormat(), $value);
         
-        return $utc->setTimezone('UTC');
-    }
+    //     return $utc->setTimezone('UTC');
+    // }
 }
 
 
