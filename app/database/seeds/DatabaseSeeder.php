@@ -12,6 +12,7 @@ class DatabaseSeeder extends Seeder {
         Eloquent::unguard();
 
         $this->call('UserTableSeeder');
+        $this->call('PostsTableSeeder');
         
         //php artisan db:seed
         //you can also do php artisan migrate --seed
