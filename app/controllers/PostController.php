@@ -20,9 +20,12 @@ class PostController extends \BaseController {
      */
     public function index()
     {
-        //
-
-        $posts = Post::orderBy('id', 'DESC')->paginate(4);
+        //user is the name of the method
+        //We use this so there is less querying that needs to be done
+        //If you're not gonna display anything for the user then you dont 
+        //need to do eager loading, also if you need to grab tons of data 
+        //it would be better to do lazy loading
+        $posts = Post::with('user')->orderBy('id', 'DESC')->paginate(4);
 
         return View::make('posts.index')->with('posts', $posts);
     }
