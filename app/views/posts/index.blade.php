@@ -40,6 +40,7 @@ text-align: center;
         <div class="blogs">
             <h3>{{{ $post->title }}}</h3>
             <p> {{{ $post->content }}} <p>
+            <p> by: {{{ $post->user->email }}} <p>
             {{link_to_action('PostController@show','Read Blog', array($post->id))}}
             <span class="posted">{{{ $post->created_at->format(Post::DATE_FORMAT)}}}</span>
         </div>

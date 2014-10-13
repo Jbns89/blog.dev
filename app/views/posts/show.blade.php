@@ -25,6 +25,7 @@
         <div class="blogs">
             <h3>{{{ $post->title }}}</h3>
             <p> {{{ $post->content }}} <p>
+            <p> by: {{{ $post->user->email }}} <p>
             {{link_to_action('PostController@edit','Edit', array($post->id))}}
             
             {{Form::open(['method' => 'Delete', 'action' => ['PostController@destroy', $post->id], 'id' => 'delete-form'])}}
