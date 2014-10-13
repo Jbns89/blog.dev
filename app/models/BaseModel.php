@@ -6,6 +6,7 @@ use Carbon\Carbon;
 class BaseModel extends Eloquent
 {
     //All accessors start with the word get and use camelCase
+    //these are also getters
     public function getCreatedAtAttribute($value)
     {
         //this is going into the carbon framework and creting an instance
@@ -16,10 +17,27 @@ class BaseModel extends Eloquent
     
     public function getUpdatedAtAttribute($value)
     {
-        //this is going into the carbon framework and creting an instance
-        $utc = Carbon::updateFromFormat($this->getDateFormat(), $value);
+        
+        $utc = Carbon::createFromFormat($this->getDateFormat(), $value);
         
         return $utc->setTimezone('America/Chicago');
+    }
+    
+    //These are setters
+    public function setCreatedAtAttribute($value)
+    {
+        
+        $utc = Carbon::createFromFormat($this->getDateFormat(), $value);
+        
+        return $utc->setTimezone('UTC');
+    }
+    
+    public function setUpdatedAtAttribute($value)
+    {
+        
+        $utc = Carbon::createFromFormat($this->getDateFormat(), $value);
+        
+        return $utc->setTimezone('UTC');
     }
 }
 
