@@ -33,6 +33,10 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
         $this->attributes['email'] = strtolower($value);
     }
     
+    public function posts()
+    {
+        return $this->hasMany('Post');
+    }
     
 
 }
