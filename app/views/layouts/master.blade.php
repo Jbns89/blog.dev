@@ -62,28 +62,19 @@
     {{Form::submit('Search', array('class' => 'btn btn-default', 'src' => 'glyphicon glyphicon-search' ))}}
     {{ Form::close() }}
 
-    @if (Auth::check())
-        <button class="navbar-left">{{ link_to_action('HomeController@doLogout', 'Logout') }} </button>
+    @if(Auth::check())
+        <li class="navbar-left"><a href="{{{ action('HomeController@doLogout') }}}">Logout</a></li>
 
-     @else 
-        <button class="navbar-left">{{ link_to_action('HomeController@showLogin', 'Login') }} </button>
+    @else 
+        <li class="navbar-left"><a href="{{{ action('HomeController@showLogin') }}}">Login</a></li>
     @endif
 
 
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Link</a></li>
-        <li><a href="#">Link</a></li>
-        <li><a href="#">Link</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
-        </li>
+        <li><a href="{{{ action('PostController@create') }}}">Create Blog</a></li>
+         <li><a href="{{{ action('PostController@index') }}}">Blog</a></li>
+        <li><a href="{{{ action('HomeController@resume') }}}">Resume</a></li>
+        <li><a href="{{{ action('HomeController@portfolio') }}}">Portfolio</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
 </nav>
@@ -112,12 +103,6 @@
                             <div class="alert alert-warning">{{{ Session::get('warningMessage') }}}</div>
                         @endif
 
-                        @if (Auth::check())
-                            <button>{{ link_to_action('HomeController@doLogout', 'Logout') }} </button>
-
-                         @else 
-                            <button>{{ link_to_action('HomeController@showLogin', 'Login') }} </button>
-                        @endif
 
         <!-- install blade syntax highlighter -->
         @yield('content')
