@@ -1,0 +1,89 @@
+Controllers are ways to make our code cleaner, theyre not necessary but helpful
+
+Database migrations are version controllers that help multiple programmers work on 
+the same database
+
+-----------------------------------------------------------------------------
+
+*********   MEMORIZE THIS TABLE   **********
+Resource controllers:
+GET     /posts                  index       Show a list of all posts
+GET     /posts/create           create      Show a form for creating a post
+POST    /posts                  store       Store the new post
+GET     /posts/{post}           show        Show a specific post
+GET     /posts/{post}/edit      edit        Show a form for editing a specific post
+
+PUT     /posts/{post}           update      Update a specific post
+    When doing a PUT you need to change the input of a form: 
+    /photos/10/edit
+    <form action="/photos/10" method="POST">
+        <input name="_method" value="PUT">
+    </form>
+    However it is better to do this:
+    {{ Form open(array('url' => '/photos/10', 'method' => 'PUT'))}}
+    
+DELETE  /posts/{post}           destroy     Delete a specific post
+Resource controllers are about efficiency, they become a web standard
+
+-----------------------------------------------------------------------------
+
+ORM's make accessing database information easier
+
+Model are also not neccesity but make our code cleaner and connect us to rows in our
+database. 
+
+*************** READ THE VALIDATION DOCS ******************
+
+When writing a unique constraint on validation rules put your constraint at the end and make sure 
+you put the column name also:
+public static $rules = [
+    'email|max:100|unique:users, email'
+];
+
+public function update($id)
+{
+    $rules = User::$rules;
+    $rules['email'] = $rules['email'] . ", $id";
+    
+    $validator = Validator::make($data = Input::all(), $rules);
+}
+
+
+---------------------------------------------------------------------------------------------
+Except for minor validation errors, make sure log all other errors
+
+MEMORIZE THE BASIC HTTP CODES
+
+httpstatus.es
+
+403 - Access Denied
+404 - Page Not Found
+500 - Server Error
+
+-----------------------------------------------------------------------------------------------
+
+to get into web server on bash
+
+Jillians-MacBook-Pro:blog.dev Jbns89$ ssh codeup@104.131.89.173
+codeup@cdblog:~$ cd /srv/www/JillD.dev
+
+-----------------------------------------------------------------------------------------------
+ADVANCED SERVER CONFIGURATION
+
+nginx(web server/proxy)
+
+//this will give you the configuration
+ps aux | grep php
+
+//this will give me all the sites available in that server
+cd /etc/nginx/sites-available/
+
+//the files inside here are different colored because they are links 
+cd /etc/nginx/sites-enabled/
+
+//Inside here is a file named php.ini, this is the php configuration file
+/etc/php5/fpm
+
+//php will run a different php.ini depending if you're running on the command line or not
+
+
