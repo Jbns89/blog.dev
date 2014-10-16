@@ -32,8 +32,12 @@ textarea{
                 
     <!-- When creating a new object use Form::open when editing one use Form::model-->
     
-    {{Form::model($post, array('action' => ['PostController@update', $post->id], 'method' => 'put'))}}
+    {{Form::model($post, array('action' => ['PostController@update', $post->id,], 'method' => 'put', 'files' => true))}}
         @include('posts.form')
+        
+        {{ Form::label('image', 'File', ['class' => 'uploader']) }}
+        {{ Form::file('image', Input::file('image'), ['class' => 'uploader']) }}
+        
         {{Form::submit('Save Changes')}}
         
     {{ Form::close() }}

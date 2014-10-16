@@ -28,4 +28,14 @@ Route::get('/rolldice/{guess}', function($guess)
    return View::make('roll_dice', $data);
 });
 
+Route::get('/posts/manage', 'PostController@manage');
+
 Route::resource('posts', 'PostController');
+
+//Shows the log in form
+Route::get('/login', 'HomeController@showLogin');
+
+//This actually attempts the log in
+Route::post('/login', 'HomeController@doLogin');
+
+Route::get('/logout', 'HomeController@doLogout');

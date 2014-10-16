@@ -30,4 +30,48 @@ class HomeController extends BaseController {
         return View::make('portfolio');
     }
 
+    public function showLogin()
+    {
+        return View::make('login');
+    }
+    
+    
+    public function doLogin()
+    {
+        //Attempt to login the user
+        //If login succeeds, redirect intended
+        //if login fails, redirect back to login form
+        
+        $credentials = [
+            'email' => Input::get('email'),
+            'password' => Input::get('password')
+        ];
+        
+        $valid = Auth::attempt($credentials);
+        
+        if ($valid) {
+            
+            return Redirect::intended('posts');
+        }
+        
+        else {
+            return Redirect::back()->withInput();
+        }
+    }
+        
+    
+    
+    public function doLogout()
+    {
+        //Logout the user
+        //Redirect somewhere nice
+        Auth::logout();
+        return Redirect::action('PostController@index');
+        
+    }
+    
+    
+    
+
+
 }
