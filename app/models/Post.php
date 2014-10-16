@@ -12,6 +12,8 @@ class Post extends BaseModel
     
     protected $table = 'posts';
     
+    protected $img_path;
+    
     public function user()
     {
         return $this->belongsTo('User');

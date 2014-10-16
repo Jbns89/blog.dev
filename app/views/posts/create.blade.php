@@ -29,11 +29,13 @@ textarea{
 
 @section('content')
                 
-    {{Form::open(array('action' => 'PostController@store'))}}
+    {{Form::open(['action' => 'PostController@store', 'files' => 'true'])}}
         @include('posts.form')
         
+        {{ Form::label('image', 'File', ['class' => 'uploader']) }}
+        {{ Form::file('image', Input::file('image'), ['class' => 'uploader']) }}
         
-         {{Form::submit('Blog Me')}}
+        {{Form::submit('Blog Me')}}
         
     {{ Form::close() }}
 

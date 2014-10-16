@@ -1,6 +1,6 @@
 <?php
 
-class PostController extends \BaseController {
+class PostController extends BaseController {
     
     
     public function __construct()
@@ -9,7 +9,10 @@ class PostController extends \BaseController {
         parent::__construct();
 
         // run auth filter before all methods on this controller except index and show
-        $this->beforeFilter('auth.basic', array('except' => array('index', 'show')));
+        // if we run into a url and we aren't authenticated we will be rerouted to log in
+        //redirect intended says oh you werent logged in so let me route you their first and then  
+        //take you back to where you intended to go
+        $this->beforeFilter('auth', array('except' => array('index', 'show')));
     }
     
 
@@ -20,12 +23,25 @@ class PostController extends \BaseController {
      */
     public function index()
     {
+        
+        
+        $search = Input::get('search');
+
         //user is the name of the method
+        $query = Post::with('user');
+        
+        $query->where('title', 'like', "%$search%");
+        
+        $query->orWhere('content', 'like', "%$search%");
+        
+        //This stands for dump and die.
+        //dd(Auth::user()->id);
+        
         //We use this so there is less querying that needs to be done
         //If you're not gonna display anything for the user then you dont 
         //need to do eager loading, also if you need to grab tons of data 
         //it would be better to do lazy loading
-        $posts = Post::with('user')->orderBy('id', 'DESC')->paginate(4);
+        $posts = $query->orderBy('id', 'DESC')->paginate(4);
 
         return View::make('posts.index')->with('posts', $posts);
     }
@@ -71,6 +87,10 @@ class PostController extends \BaseController {
             Log::info('User encountered 404 error', Input::all());
             //This is showing a 404 error page
             App::abort(404);
+        }
+        
+        if(Auth::user() == $post->user_id){
+            
         }
 
         return View::make('posts.show')->with('post', $post);
@@ -129,11 +149,27 @@ class PostController extends \BaseController {
         }
         else {
             
-        
+            $dest_path = '';
+            $orig_name = '';
+            
+            
+            
+            
             //Input::has('something') is good for setting
             //up checkbox and seeing if it has been 
             $post->title = Input::get('title');
             $post->content = Input::get('content');
+            //This gives you the id of the currently logged in user
+            $post->user_id = Auth::id();
+            
+            if (Input::hasFile('image')) {
+                    $file = Input::file('image');
+                    $orig_name = $file->getClientOriginalName() . str_random(6);
+                    $dest_path = public_path() . '/img/';
+                    $upload = $file->move($dest_path, $orig_name);
+                    
+                    $post->img_path = '/img/' . $orig_name;
+                }
             $post->save();
             
             $id = $post->id;

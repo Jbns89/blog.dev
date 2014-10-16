@@ -17,10 +17,13 @@ return array(
     */
 
     'debug' => true,
-    'provider' => array(
+    
+    // We need to add append_config so instead of overwriting the providers
+    // we are just adding to the providers
+    'provider' => append_config(array(
         'Way\Generators\GeneratorsServiceProvider',
         'Barryvdh\Debugbar\ServiceProvider'
-        )
+        ))
 
 );
 
