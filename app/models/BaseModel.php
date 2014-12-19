@@ -9,7 +9,7 @@ class BaseModel extends Eloquent
     //these are also getters
     public function getCreatedAtAttribute($value)
     {
-        //this is going into the carbon framework and creting an instance
+        //this is going into the carbon framework and creating an instance
         $utc = Carbon::createFromFormat($this->getDateFormat(), $value);
         
         return $utc->setTimezone('America/Chicago');
@@ -40,6 +40,3 @@ class BaseModel extends Eloquent
     //     return $utc->setTimezone('UTC');
     // }
 }
-
-
-?>

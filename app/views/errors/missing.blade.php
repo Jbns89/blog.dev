@@ -29,6 +29,8 @@ text-align: -webkit-center;
 
 </style>
 
+<title>404</title>
+
 
 @stop
 

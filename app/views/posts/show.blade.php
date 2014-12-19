@@ -43,9 +43,8 @@
             
             
         </div>
+        
         <div class="img">
-    
-
         @if ($post->img_path)
             <img class="img-upload" src="{{ $post->img_path }}" style="max-width: 100%">
         @endif

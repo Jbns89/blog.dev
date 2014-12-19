@@ -152,24 +152,22 @@ class PostController extends BaseController {
             $dest_path = '';
             $orig_name = '';
             
-            
-            
-            
             //Input::has('something') is good for setting
-            //up checkbox and seeing if it has been 
+            //up checkbox and seeing if it has been filled in
             $post->title = Input::get('title');
             $post->content = Input::get('content');
             //This gives you the id of the currently logged in user
             $post->user_id = Auth::id();
             
             if (Input::hasFile('image')) {
-                    $file = Input::file('image');
-                    $orig_name = $file->getClientOriginalName() . str_random(6);
-                    $dest_path = public_path() . '/img/';
-                    $upload = $file->move($dest_path, $orig_name);
-                    
-                    $post->img_path = '/img/' . $orig_name;
-                }
+                $file = Input::file('image');
+                $orig_name = $file->getClientOriginalName() . str_random(6);
+                $dest_path = public_path() . '/img/';
+                $upload = $file->move($dest_path, $orig_name);
+                
+                $post->img_path = '/img/' . $orig_name;
+            }
+            
             $post->save();
             
             $id = $post->id;

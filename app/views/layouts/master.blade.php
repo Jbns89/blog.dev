@@ -127,7 +127,7 @@
                     @if (Auth::check())
                         <li>{{ link_to_action('HomeController@doLogout', 'Logout') }} </li>
                     
-                     @else 
+                    @else 
                         <li>{{ link_to_action('HomeController@showLogin', 'Login') }} </li>
                     @endif
                     
