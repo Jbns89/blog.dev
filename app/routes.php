@@ -39,3 +39,13 @@ Route::get('/login', 'HomeController@showLogin');
 Route::post('/login', 'HomeController@doLogin');
 
 Route::get('/logout', 'HomeController@doLogout');
+
+Route::get('/sip/', function()
+{
+   return View::make('sip');
+});
+
+Route::get('/matt/', function()
+{
+   return View::make('mattAtvMoped');
+});

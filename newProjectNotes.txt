@@ -1,0 +1,92 @@
+A migration is a way to version control our database 
+structure
+
+Using the blade format for forms allows for a unique token to be created
+
+
+------------------------------------
+If you wanted to make a new project
+------------------------------------
+    Make it a laravel project
+    extract out passwords ($_ENV[] and .env files)
+    use existing mysql user
+    
+    
+    ****** STEP 1 ******
+
+        $ cd ~/vagrant-lamp/
+        $ vagrant ssh
+        cd /vagrant/sites
+        composer create-project laravel/laravel projectname.dev
+        cd /vagrant/sites/projectname.dev
+
+        /////this does a permissions chage
+        chmod -R o+w app/storage
+    
+    ******* STEP 2 ********
+
+        From your Mac terminal do:
+        cd ~/vagrant-lamp/
+
+        ////Configuring nginx and creating the site
+        ansible-playbook ansible/site-create.yml -l vagrant -e "domain=projectname.dev"
+        
+        ////this opens up the host file on sublime so we can add a new ip address to
+        ////for our projectname.dev site
+        sudo subl /etc/hosts
+        
+        ////This goes in our hosts file
+        192.168.77.77  projectname.dev
+    
+    ******* STEP 3 ********
+
+        In your projectname.dev folder under app under local in your database file
+        change your host name, database, user and password $_ENV[] and create
+        an .env file where you will store the actual info. Its put in an .env file
+        because github will automatically ignore this.
+
+        When using a seeder also create another .env file to store there passwords and user name
+    
+    ******** STEP 4 ********
+
+        Change your environment in bootstrap in start.php to:
+        
+        $env = $app->detectEnvironment(function()
+        {
+            return !empty($_SERVER['LARAVEL_ENV']) ? $_SERVER['LARAVEL_ENV'] : 'production';
+        });
+        
+        
+    ******** Additional Features ********
+
+        ------- Uploading Images -------
+
+            Your form needs to have enctype="multipart/form-data"
+                or
+            add 'files' => 'true' to your form::open(array()) with laravel
+            public_path() This is the same as /public
+            storage_path() This is the same as /storage
+
+            $image = Input::file('image');
+            $original_image_name = $image->getClientOriginalName();
+
+            //if img folder does not yet exist laravel will create it for you
+            //if you do not want the public to have access to your img folder
+            //you can use storage_path()
+            $dest_directory = public_path() . '/img/';
+
+            $image->move($dest_directory, $original_image_name);
+
+            public function store() 
+            {
+                //TODO -  Validation
+
+                $destinationPath = '';
+                $filename        = '';
+
+                if (Input::hasFile('image')) {
+                    $file            = Input::file('image');
+                    $destinationPath = public_path().'/img/';
+                    $filename        = str_random(6) . '_' . $file->getClientOriginalName();
+                    $uploadSuccess   = $file->move($destinationPath, $filename);
+                }

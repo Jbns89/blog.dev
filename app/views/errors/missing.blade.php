@@ -22,12 +22,14 @@ $(document).ready(function()
 
 <style>
 h3 {
-font-weight: bolder;
-color: #0A2A8F;
-text-align: -webkit-center;
+    font-weight: bolder;
+    color: #0A2A8F;
+    text-align: -webkit-center;
 }
 
 </style>
+
+<title>404</title>
 
 
 @stop

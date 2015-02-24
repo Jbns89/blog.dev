@@ -1,0 +1,14 @@
+html {
+    background-color: mintcream;
+}
+body {
+    font-family: 'The Girl Next Door', cursive;
+}
+
+.container {
+    background-image: url(/img/logo_bkgrd.png);
+    background-repeat: no-repeat;
+    background-size: 75%;
+    background-position-y: center;
+    background-position-x: center;
+}
