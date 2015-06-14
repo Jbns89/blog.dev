@@ -1,14 +1,31 @@
-html {
-    background-color: mintcream;
-}
-body {
-    font-family: 'The Girl Next Door', cursive;
-}
+body {font-family: 'The Girl Next Door', cursive; margin: 0px; margin-bottom: -15px;}
+a.active {color: #E5E5E5; font-size: 23;}
 
-.container {
-    background-image: url(/img/logo_bkgrd.png);
-    background-repeat: no-repeat;
-    background-size: 75%;
-    background-position-y: center;
-    background-position-x: center;
+/* Navbar */
+#navbar {height: 75px; background-color: rgba(255, 255, 255, 0.59); position: fixed; width: 100%; top: 0; -webkit-box-shadow: 0px 9px 44px -5px rgba(0,0,0,1); -moz-box-shadow: 0px 9px 44px -5px rgba(0,0,0,1); box-shadow: 0px 9px 44px -5px rgba(0,0,0,1);}
+#navbar .logo {float: left; position: absolute; top: -15px; left: 5px; width: 155px;}
+#navbar .logo img {width: 100%;}
+#navbar ul {list-style: none; font-size: 25px; font-weight: bolder; text-align: right;}
+#navbar ul li {display: inline; font-size: 20px; letter-spacing: 1.5px; margin-left: 20px;}
+#navbar ul li:last-child {margin-right: 10px;}
+#navbar ul li a {text-decoration: none;}
+#navbar ul li a:hover {font-size: 23px; color:#E5E5E5;}
+
+/* Main Body */
+#wrapper {background-image: url(/img/swirl_pattern.png); padding-bottom: 10px;}
+#wrapper .container {padding-top: 100px; margin: auto; width: 80%;}
+#wrapper .container .post {width: 75%; margin: auto; background-color: rgba(85, 26, 139, 0.63); padding: 1px 25px; border-radius: 10px; margin: 30px auto 0px auto; -webkit-box-shadow: 0px 2px 39px 1px rgba(0,0,0,0.75); -moz-box-shadow: 0px 2px 39px 1px rgba(0,0,0,0.75); box-shadow: 0px 2px 39px 1px rgba(0,0,0,0.75); border: 1px solid #000;}
+
+
+
+
+
+
+
+
+
+/* Responsive */
+@media screen and (max-width: 470px){
+    #navbar ul li a {font-size: 15px;}
+    #navbar ul li a:hover {font-size:18px;}
 }
