@@ -49,3 +49,8 @@ Route::get('/matt/', function()
 {
    return View::make('mattAtvMoped');
 });
+
+Route::get('/bb/', function()
+{
+   return View::make('bb_invite');
+});
