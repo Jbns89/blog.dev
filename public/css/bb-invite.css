@@ -1,8 +1,21 @@
-body {margin: 0px;}
-main img {width: 100%; height: 100%; position: relative;}
-.tina {position: absolute; top: 0; width: 100px; height: 135px;}
-.gene {position: absolute; top: 0; width: 125px; height: 150px; right: 20px;}
-.linda {position: absolute; top: 0; width: 125px; height: 200px; right: 110px;}
-.louise {width: 110px; height: 135px; position: absolute; top: 0; right: 250px;}
-.bob {width: 190px; height: 250px; position: absolute; top: 0; left: 80px;}
-.main {position: absolute;  left: 0;  right: 0;  bottom: 0;}
+body {margin: 0px; font-family: 'Coming Soon', cursive; background-color: #F2ED0B;}
+main {position: absolute; top: 0; left: 0; right: 0; bottom: 0;}
+i.fa {margin-right: 5%; padding: 10px 0px;}
+.relative {position: relative;}
+.absolute {position: absolute;}
+.left {float: left;}
+.right {float: right;}
+.tina {width: 21%; position: absolute; bottom: -25%; right: -25%;}
+.gene {width: 22%; position: absolute; bottom: -27%; right: -15%;}
+.linda {width: 24%; position: absolute; bottom: -25%; left: -10%;}
+.louise {width: 9%; position: absolute; bottom: -25%; right: 2%;}
+.bob {width: 17%; position: absolute; bottom: -25%; left: -20%;}
+.invite.content {width: 45%; margin: auto; background-color: rgba(255, 255, 255, 0.9); border-radius: 20px; padding: 25px 25px 30px; margin-top: 5%; text-align: center; box-shadow: 0px 0px 15px 3px rgba(0, 0, 0, 0.5);}
+.invite.content ul {list-style: none;  text-align: left;  margin: auto; width: 50%;}
+.invite.content p {width: 90%; margin: auto;}
+.logo {width: 100%; text-align: center; margin-top: 5%;}
+.logo img {width: 40%;}
+.overlay {position: fixed; left: 0; right: 0; bottom: 0; top: 0; z-index: 100; background-color: rgba(0, 0, 0, 0.7); text-align: center; padding-top: 5%; overflow: scroll;}
+.hide {display:none;}
+
+
