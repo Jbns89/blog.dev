@@ -35,6 +35,7 @@
             $(".videos").click(function(e){
                 e.preventDefault();
                 $(".overlay").show();
+                $("#bbtheme").trigger("pause");
                 var videos = [
                 "<iframe width='75%' height='90%' src='https://www.youtube.com/embed/t9TfgMM7Xto?rel=0&autoplay=1' frameborder='0' allowfullscreen></iframe>",
                 "<iframe width='75%' height='90%' src='https://www.youtube.com/embed/Dt8Z8yEaEV4?rel=0&autoplay=1' frameborder='0' allowfullscreen></iframe>",
@@ -45,15 +46,25 @@
                 
                 var index = (Math.floor(Math.random()*5));
                 
-                $(".overlay").html(videos[index]);
+                $(".overlay").html(videos[index] + "<div><a id='close' href='#cls'>X</a></div>");
                 $(".image-container").css('width', '0px', 'height', '0px');
             });
+            $("#close").click(function(){
+                $(".overlay").css("display","none");
+                $("#bbtheme").trigger("play");
+            });
+            $("#mute").click(function(e){
+                e.preventDefault();
+                $("#bbtheme").trigger("pause");
+            });
+            
         });
         </script>
     </head>
     <body>
         <div class="overlay hide"></div>
         <main> 
+            <a id="mute" href="#"><div><i class="fa fa-volume-off"></i>Mute</div></a>
             <audio class="audio-player" id="bbtheme" src="/img/bbtheme.mp3"></audio>
             <div class="invite content relative">
                 <h1>You're Invited to the<br>GRAND-RE-RE-RE-OPENING!</h1>
